@@ -12,11 +12,17 @@ repository root.
 - Phần đầu (bìa, Acknowledgement, Definition and Acronyms, I. Project Introduction) giữ nguyên chữ, chỉ trình bày lại theo example: Definition and Acronyms thành Heading 1; bảng Project Information, Major Features, Limitations đổi thành dòng `Label: …`, `[FE-xx]`, `LI-xx:`; Key features/Pros/Cons tách thành bullet; Exclusions đánh số `EX-xx`.
 - Khung mở rộng theo mật độ của example: 62 đặc tả chức năng ở mục III (33 mục mới là khung `[TO COMPLETE]`), SDD có một sequence diagram cho mỗi chức năng, User Manual chia theo nhóm chức năng với các bước và hai ô ảnh cho mỗi chức năng; tổng cộng 266 ô ảnh.
 - Gộp Table of Figures vào một Table of Contents như example: chú thích hình dùng style Heading 6 và nằm dưới mục chứa nó; TOC field `\t "Heading 1,1,…,Heading 6,6"`, mọi mục có hyperlink tới bookmark và số trang lấy từ bản render. Ô ảnh và số liệu còn thiếu được đánh dấu bằng highlight vàng `[IMAGE TO BE ADDED …]` / `[TO COMPLETE …]`.
-- Không cần sửa BRD/PRD/architecture: report chỉ trình bày lại nội dung đã có.
+- Điền nội dung từ code `logos` và `ai-research-platform-fe` vào khung:
+  - Mục III: 33 đặc tả chức năng còn trống được viết từ 160 route của Platform API, gồm endpoint, quyền, business rule và mã lỗi thật. Thêm use case Transfer Ownership, Delete Project, Configure Project Settings. Application Messages List lấy 135 mã lỗi và message từ `APIError` trong code.
+  - Sửa hai chỗ sai so với code: thời hạn lời mời theo `access.expiry_days` (mặc định 7 ngày, trần 720 giờ) chứ không phải 24 giờ; project có thể bị owner xoá hẳn (`DELETE /projects/{id}`).
+  - Mục IV: Database Design có bảng PK/FK và bảng cột cho 40 bảng (421 cột, lấy từ SQLAlchemy models); mỗi sequence diagram ghi API gọi và luồng chính.
+  - Mục V: số test case theo từng khu vực repo (2.672 test) và kết quả chạy ngày 2026-10-23 (4.063 passed, 9 failed, 53 skipped); Defect Report liệt kê 9 test đang fail.
+  - Mục VI: User Manual theo từng chức năng có Who, Where to start, Steps, System Actions, Expected Result, If something goes wrong.
+- Không cần sửa BRD/PRD/architecture trong đợt này; hai điểm sai ở trên cũng cần đối chiếu lại trong BRD/PRD ở đợt sau.
 
 ### Validation
 
-- Render bằng LibreOffice ra PDF (112 trang khi chưa có ảnh); kiểm tra 576 mục TOC/hình đều tìm thấy trang và số trang ổn định qua hai lần render.
+- Render bằng LibreOffice ra PDF (159 trang khi chưa có ảnh); kiểm tra 632 mục TOC/hình đều tìm thấy trang và số trang ổn định qua hai lần render.
 - `git diff --check` sạch.
 
 ## 2026-10-23 — Viết lại BRD, PRD và architecture theo hệ thống đã code (v2.0 DRAFT)
