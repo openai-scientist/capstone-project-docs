@@ -4,6 +4,15 @@ Lịch sử thay đổi và registry của toàn bộ tài liệu canonical tron
 `capstone-project-docs`. Các đường dẫn bên dưới là đường dẫn tương đối từ
 repository root.
 
+## 2026-10-23 — Xoá các tài liệu handoff đã cũ
+
+### Removed
+
+- `be-handoff-topic-to-hypothesis.md`, `engine-handoff-topic-to-hypothesis.md`, `research-run-event-stream.md`: đây là các handoff tạm cho FE/BE/engine, nay hệ thống đã code xong nên không còn dùng. Contract hiện hành nằm trong [PRD](AI-Research-Experimentation-Platform-PRD-v1.7-DRAFT.md) và [architecture](architecture.md).
+- Các link tới ba file này ở entry cũ trong changelog được đổi thành tên file kèm ghi chú "đã xoá" để không còn link hỏng.
+- Không cần sửa BRD/PRD/Use Case Spec: không file nào còn tham chiếu tới ba tài liệu trên.
+- Validation: `grep` không còn link tới file đã xoá; `git diff --check` sạch.
+
 ## 2026-10-23 — Dựng lại Report 7 theo cấu trúc report mẫu và hệ thống đã code
 
 ### Changed
@@ -46,7 +55,7 @@ repository root.
 
 ### Changed
 
-- [Platform BE handoff](be-handoff-topic-to-hypothesis.md), mục 13: đổi từ "việc FE sẽ làm" thành những gì FE đã làm. Gồm client cho mục 3.1–3.6, cách đọc lại event rồi nối SSE, cách mở lại run sau reload (`GET /runs?limit=1`, nên `GET /runs` phải sắp mới nhất trước và trả `topic`, `label`, `status`), và các việc còn lại khi BE xong.
+- Platform BE handoff (`be-handoff-topic-to-hypothesis.md`, đã xoá), mục 13: đổi từ "việc FE sẽ làm" thành những gì FE đã làm. Gồm client cho mục 3.1–3.6, cách đọc lại event rồi nối SSE, cách mở lại run sau reload (`GET /runs?limit=1`, nên `GET /runs` phải sắp mới nhất trước và trả `topic`, `label`, `status`), và các việc còn lại khi BE xong.
 - Repo FE: chọn nguồn run bằng `NEXT_PUBLIC_RUN_STREAM_SOURCE` (`mock` mặc định, hoặc `api`). Mock của topic → hypothesis giữ lại cho tới khi BE chạy qua checklist. Experiment, Interpret, Report và Write hiện trên UI ở dạng khoá.
 - Không cần sửa BRD/PRD/ERD: chưa đổi requirement hay contract, chỉ nối FE theo tài liệu đã có.
 
@@ -60,12 +69,12 @@ repository root.
 
 ### Added
 
-- [Engine handoff](engine-handoff-topic-to-hypothesis.md): cho team repo lõi chạy pipeline stage 1–8. Gồm ranh giới trách nhiệm với Platform BE; API engine cung cấp (`POST /runs` idempotent theo `platform_run_id`, đọc trạng thái, đọc lại event, trả lời gate, pause, resume, cancel); cách đẩy event về Platform BE với `source_seq` và chính sách retry; danh mục event chi tiết cho từng stage kèm validate; gate; quy tắc chia nhỏ event; 10 tình huống lỗi; cách test.
-- [Platform BE handoff](be-handoff-topic-to-hypothesis.md): viết lại cho `ai-research-platform-be`. Platform BE vẫn là API duy nhất của FE: tạo run bằng `topic`, `domains`; đọc lại event; SSE theo mẫu notification stream; trả lời gate; pause, resume; sửa `sync` và `abandon`. Thêm endpoint nhận event từ engine, sửa `PopperClient`, pacer, happy case, 15 unhappy case, migration (`run_events`, `run_gates`, cột mới của `research_runs`), cách test và checklist.
+- Engine handoff (`engine-handoff-topic-to-hypothesis.md`, đã xoá): cho team repo lõi chạy pipeline stage 1–8. Gồm ranh giới trách nhiệm với Platform BE; API engine cung cấp (`POST /runs` idempotent theo `platform_run_id`, đọc trạng thái, đọc lại event, trả lời gate, pause, resume, cancel); cách đẩy event về Platform BE với `source_seq` và chính sách retry; danh mục event chi tiết cho từng stage kèm validate; gate; quy tắc chia nhỏ event; 10 tình huống lỗi; cách test.
+- Platform BE handoff (`be-handoff-topic-to-hypothesis.md`, đã xoá): viết lại cho `ai-research-platform-be`. Platform BE vẫn là API duy nhất của FE: tạo run bằng `topic`, `domains`; đọc lại event; SSE theo mẫu notification stream; trả lời gate; pause, resume; sửa `sync` và `abandon`. Thêm endpoint nhận event từ engine, sửa `PopperClient`, pacer, happy case, 15 unhappy case, migration (`run_events`, `run_gates`, cột mới của `research_runs`), cách test và checklist.
 
 ### Changed
 
-- [Research run event stream](research-run-event-stream.md): tách SSE sang `GET …/events/stream`; `GET …/events` trả JSON phân trang. `run.started.dataset` thành tuỳ chọn, vì run đi từ topic không có dataset. FE đã sửa `contract.ts` và mock tương ứng.
+- Research run event stream (`research-run-event-stream.md`, đã xoá): tách SSE sang `GET …/events/stream`; `GET …/events` trả JSON phân trang. `run.started.dataset` thành tuỳ chọn, vì run đi từ topic không có dataset. FE đã sửa `contract.ts` và mock tương ứng.
 - Không cần sửa BRD/PRD/ERD trong đợt này: đây là tài liệu triển khai cho contract nháp, chưa đổi requirement.
 
 ### Validation
@@ -77,7 +86,7 @@ repository root.
 
 ### Changed
 
-- [Research run event stream](research-run-event-stream.md): `StagePlanStep.artifact` nay là tên cho người dùng đọc (ví dụ "Research goal", "Gap map") thay vì đường dẫn như `stage-01/goal.md`; thêm `StagePlan.reads` tuỳ chọn để FE hiện stage dựa vào gì và viết ra gì.
+- Research run event stream (`research-run-event-stream.md`, đã xoá): `StagePlanStep.artifact` nay là tên cho người dùng đọc (ví dụ "Research goal", "Gap map") thay vì đường dẫn như `stage-01/goal.md`; thêm `StagePlan.reads` tuỳ chọn để FE hiện stage dựa vào gì và viết ra gì.
 - Bổ sung phần còn thiếu so với [hướng dẫn pipeline](../ai-research-platform-fe/docs/pipeline_stage_1_to_8_guide.md):
   - Stage 1: event `scope.approved` (`at`, `note`) cho bước PI duyệt goal, kèm mốc giờ lưu.
   - Stage 4: `literature.merged` đổi `sources[]` thành `records[]` (nguồn, ID, số trích dẫn, có DOI) cộng với `kept`. `literature.collected` thêm `collected_at`. `ShortlistPaper` thêm `source` và `citations`.
@@ -95,7 +104,7 @@ repository root.
 
 ### Changed
 
-- [Research run event stream](research-run-event-stream.md): thay stage `understand` bằng 5 stage theo pipeline stage 1–7 ([hướng dẫn pipeline](../ai-research-platform-fe/docs/pipeline_stage_1_to_8_guide.md)): `scope` (1–2), `search` (3–4), `screen` (5), `read` (6), `synthesize` (7). `hypothesize` (stage 8) nay sinh hypothesis qua tranh luận 3 góc nhìn, mỗi hypothesis có 4 phần gồm tiêu chí bác bỏ `falsify`, kèm kiểm tra tính mới và khả thi.
+- Research run event stream (`research-run-event-stream.md`, đã xoá): thay stage `understand` bằng 5 stage theo pipeline stage 1–7 ([hướng dẫn pipeline](../ai-research-platform-fe/docs/pipeline_stage_1_to_8_guide.md)): `scope` (1–2), `search` (3–4), `screen` (5), `read` (6), `synthesize` (7). `hypothesize` (stage 8) nay sinh hypothesis qua tranh luận 3 góc nhìn, mỗi hypothesis có 4 phần gồm tiêu chí bác bỏ `falsify`, kèm kiểm tra tính mới và khả thi.
 - Khoá test plan (`plan.locked`, thêm `design`) chuyển sang step đầu của `experiment` (stage 9).
 - Thêm event `skills.loaded`; thêm agent `strategist`, đổi `knowledge` thành `librarian`; thêm luật 5 (hypothesis phải bác bỏ được) và luật 6 (con số nhớ ra chưa kiểm chứng cho tới khi có bài báo xác nhận).
 - Gate: `framing` đổi thành `scope`; thêm gate `screen` (HITL stage 5) cho Copilot và Full, cho phép bỏ bài khỏi shortlist.
@@ -113,7 +122,7 @@ repository root.
 
 ### Added
 
-- [Research run event stream](research-run-event-stream.md): contract giữa Platform BE và FE cho workspace của research run. Nội dung gồm endpoint SSE `GET …/runs/{runId}/events` (resume bằng `Last-Event-ID`), lệnh trả lời gate, pause/resume, envelope event, toàn bộ danh mục event theo 7 stage (Data, Understand, Hypothesize, Experiment, Interpret, Report, Write), điểm dừng theo 4 review mode và cách ánh xạ với `research_runs.status`, `frame_reviews`, `run_artifacts` hiện có.
+- Research run event stream (`research-run-event-stream.md`, đã xoá): contract giữa Platform BE và FE cho workspace của research run. Nội dung gồm endpoint SSE `GET …/runs/{runId}/events` (resume bằng `Last-Event-ID`), lệnh trả lời gate, pause/resume, envelope event, toàn bộ danh mục event theo 7 stage (Data, Understand, Hypothesize, Experiment, Interpret, Report, Write), điểm dừng theo 4 review mode và cách ánh xạ với `research_runs.status`, `frame_reviews`, `run_artifacts` hiện có.
 - Lý do: FE đã dựng workspace từ event (đang dùng mock phát đúng contract này), nên BE và Popper cần một spec chung để phát event thật.
 - Chưa sửa BRD/PRD/ERD: contract đề xuất thêm `review_mode`, bảng event và gate tổng quát; các thay đổi này cần team BE xác nhận trước khi đưa vào tài liệu canonical.
 
