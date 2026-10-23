@@ -8,13 +8,15 @@ repository root.
 
 ### Changed
 
-- `docs/1.2/report/FA26SE115_Report7.docx` (thư mục `docs/` nằm trong `.gitignore`, file không được track): dựng lại toàn bộ nội dung theo cấu trúc report mẫu `docs/example/…Report7_Final_Project_Report.docx`, gồm I. Project Introduction (giữ phong cách cũ, cập nhật nội dung), II. Project Management Plan, III. SRS, IV. SDD, V. Testing, VI. Release Package & User Guides. Nội dung lấy từ [BRD](AI-Research-Experimentation-Platform-BRD-v1.8-DRAFT.md), [PRD](AI-Research-Experimentation-Platform-PRD-v1.7-DRAFT.md), [architecture](architecture.md) và code.
-- Giữ nguyên trang bìa, Acknowledgement và style của file. Mục lục tĩnh được thay bằng TOC field. Ô ảnh và số liệu còn thiếu được đánh dấu bằng highlight vàng `[IMAGE TO BE ADDED …]` / `[TO COMPLETE …]`.
+- `docs/1.2/report/FA26SE115_Report7.docx` (thư mục `docs/` nằm trong `.gitignore`, file không được track): dựng lại toàn bộ nội dung theo cấu trúc report mẫu `docs/example/…Report7_Final_Project_Report.docx`, gồm II. Project Management Plan, III. SRS, IV. SDD, V. Testing, VI. Release Package & User Guides. Nội dung lấy từ [BRD](AI-Research-Experimentation-Platform-BRD-v1.8-DRAFT.md), [PRD](AI-Research-Experimentation-Platform-PRD-v1.7-DRAFT.md), [architecture](architecture.md) và code.
+- Phần đầu (bìa, Acknowledgement, Definition and Acronyms, I. Project Introduction) giữ nguyên chữ, chỉ trình bày lại theo example: Definition and Acronyms thành Heading 1; bảng Project Information, Major Features, Limitations đổi thành dòng `Label: …`, `[FE-xx]`, `LI-xx:`; Key features/Pros/Cons tách thành bullet; Exclusions đánh số `EX-xx`.
+- Khung mở rộng theo mật độ của example: 62 đặc tả chức năng ở mục III (33 mục mới là khung `[TO COMPLETE]`), SDD có một sequence diagram cho mỗi chức năng, User Manual chia theo nhóm chức năng với các bước và hai ô ảnh cho mỗi chức năng; tổng cộng 266 ô ảnh.
+- Gộp Table of Figures vào một Table of Contents như example: chú thích hình dùng style Heading 6 và nằm dưới mục chứa nó; TOC field `\t "Heading 1,1,…,Heading 6,6"`, mọi mục có hyperlink tới bookmark và số trang lấy từ bản render. Ô ảnh và số liệu còn thiếu được đánh dấu bằng highlight vàng `[IMAGE TO BE ADDED …]` / `[TO COMPLETE …]`.
 - Không cần sửa BRD/PRD/architecture: report chỉ trình bày lại nội dung đã có.
 
 ### Validation
 
-- Render bằng LibreOffice ra PDF (63 trang) và xem lại các trang mẫu.
+- Render bằng LibreOffice ra PDF (112 trang khi chưa có ảnh); kiểm tra 576 mục TOC/hình đều tìm thấy trang và số trang ổn định qua hai lần render.
 - `git diff --check` sạch.
 
 ## 2026-10-23 — Viết lại BRD, PRD và architecture theo hệ thống đã code (v2.0 DRAFT)
