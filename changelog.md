@@ -4,6 +4,19 @@ Lịch sử thay đổi và registry của toàn bộ tài liệu canonical tron
 `capstone-project-docs`. Các đường dẫn bên dưới là đường dẫn tương đối từ
 repository root.
 
+## 2026-10-23 — Dựng lại Report 7 theo cấu trúc report mẫu và hệ thống đã code
+
+### Changed
+
+- `docs/1.2/report/FA26SE115_Report7.docx` (thư mục `docs/` nằm trong `.gitignore`, file không được track): dựng lại toàn bộ nội dung theo cấu trúc report mẫu `docs/example/…Report7_Final_Project_Report.docx`, gồm I. Project Introduction (giữ phong cách cũ, cập nhật nội dung), II. Project Management Plan, III. SRS, IV. SDD, V. Testing, VI. Release Package & User Guides. Nội dung lấy từ [BRD](AI-Research-Experimentation-Platform-BRD-v1.8-DRAFT.md), [PRD](AI-Research-Experimentation-Platform-PRD-v1.7-DRAFT.md), [architecture](architecture.md) và code.
+- Giữ nguyên trang bìa, Acknowledgement và style của file. Mục lục tĩnh được thay bằng TOC field. Ô ảnh và số liệu còn thiếu được đánh dấu bằng highlight vàng `[IMAGE TO BE ADDED …]` / `[TO COMPLETE …]`.
+- Không cần sửa BRD/PRD/architecture: report chỉ trình bày lại nội dung đã có.
+
+### Validation
+
+- Render bằng LibreOffice ra PDF (63 trang) và xem lại các trang mẫu.
+- `git diff --check` sạch.
+
 ## 2026-10-23 — Viết lại BRD, PRD và architecture theo hệ thống đã code (v2.0 DRAFT)
 
 ### Changed
