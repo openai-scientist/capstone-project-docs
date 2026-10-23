@@ -4,6 +4,23 @@ Lịch sử thay đổi và registry của toàn bộ tài liệu canonical tron
 `capstone-project-docs`. Các đường dẫn bên dưới là đường dẫn tương đối từ
 repository root.
 
+## 2026-10-23 — Viết lại BRD, PRD và architecture theo hệ thống đã code (v2.0 DRAFT)
+
+### Changed
+
+- [BRD](AI-Research-Experimentation-Platform-BRD-v1.8-DRAFT.md), [PRD](AI-Research-Experimentation-Platform-PRD-v1.7-DRAFT.md) và [architecture](architecture.md): viết lại toàn bộ thành v2.0. Bản cũ mô tả "Popper target architecture" (Understand ⇄ Ground ⇄ Discover ⇄ Verify ⇄ Communicate, Analysis Ledger, Verify trên dữ liệu reserved, manuscript), một kiến trúc không được hiện thực. Bản mới bám theo code đang chạy:
+  - Platform `logos/services/management`: auth không mật khẩu, project và 3 project role, dataset, data connection, run, stage, gate, accept/send-back, self-healing, token budget, BYOK, admin, webhook, audit.
+  - Engine `dataset`, `hypothesis`, `experiment_design` trên skeleton `logos_engine`; pipeline `default` và `dataset_first`; engine contract 3.3.0.
+  - AI PI `logos/services/oversight` (charter, stage outcome, failure, close; Critic tắt mặc định; obligation).
+  - Frontend `ai-research-platform-fe` (Next.js 16): route, section của workspace, Run studio.
+- Giữ nguyên tên file để không làm hỏng liên kết; version mới ghi trong header của từng file.
+
+### Validation
+
+- Đối chiếu với code: README/AGENTS của từng project trong `logos`, `logos_contract.base.CONTRACT_VERSION`, `management/research/schemas/runs.py`, các router trong `management`, `research/pi/authority.py`, `research/platform_settings.py`, `integrations/catalog.py`, `core/roles.py`, `deploy/.env.example` (`ENGINES`, `PIPELINES`), `stages/*/engine.py`, các route `page.tsx` và `workspace-sections.tsx` của FE.
+- `git diff --check` sạch. Liên kết giữa BRD, PRD, architecture và changelog đều trỏ tới file có thật.
+- Không có diagram nào phải regenerate.
+
 ## 2026-10-06 — FE nối sẵn API cho luồng topic → hypothesis, chờ Platform BE (DRAFT)
 
 ### Changed
